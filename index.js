@@ -46,6 +46,7 @@ app.post('/upload', upload.single('image'), (req, res) => {
 
 // Image moderator
 const axios = require('axios');
+const { Module } = require('module');
 
 async function isImageSafe(imageBuffer) {
   const subscriptionKey = process.env.AZURE_SUBSCRIPTION_KEY;
@@ -97,17 +98,8 @@ app.post('/validate-product', upload.single('image'), async (req, res) => {
       res.status(200).json({ message: 'Product is valid.' });
     });
     
-
-// upload handler
-
+    app.get('/', (req, res) => {
+      res.send('API is running...');
+    });
     
-
-
-// Test Route
-app.get('/', (req, res) => {
-  res.send('API is running...');
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+module.exports=app;
