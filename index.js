@@ -1,14 +1,10 @@
 const express = require('express');
 const multer = require('multer');
-const path = require('path');
 require('dotenv').config();
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-const PORT = process.env.PORT || 3001;
-
 
 
 // Brand validator 
@@ -46,7 +42,6 @@ app.post('/upload', upload.single('image'), (req, res) => {
 
 // Image moderator
 const axios = require('axios');
-const { Module } = require('module');
 
 async function isImageSafe(imageBuffer) {
   const subscriptionKey = process.env.AZURE_SUBSCRIPTION_KEY;
